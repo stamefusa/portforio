@@ -21,7 +21,7 @@
 .meta {
   display: flex;
   align-items: center;
-  margin-bottom: 64px;
+  margin-bottom: 24px;
 }
 
 .writer {
@@ -45,9 +45,13 @@
 }
 
 .thumbnail {
-  width: 960px;
+  width: 640px;
   height: auto;
-  margin-bottom: 64px;
+  margin-bottom: 24px;
+}
+
+.origin {
+  margin-top: 24px;
 }
 
 .content {
@@ -90,7 +94,7 @@
 }
 
 .content > p {
-  margin: 2rem 0 0.5rem;
+  /* margin: 2rem 0 0.5rem; */
   line-height: 2;
 }
 
@@ -208,7 +212,7 @@
   .meta {
     display: flex;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
     font-size: 0.9rem;
   }
 
