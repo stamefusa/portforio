@@ -11,7 +11,7 @@ export default function Nav({ tags }: Props) {
   return (
     <nav className={styles.nav}>
       <SearchField />
-      <TagList tags={tags} />
+      {/* <TagList tags={tags} /> */}
     </nav>
   );
 }
