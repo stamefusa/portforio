@@ -2,9 +2,6 @@ import { formatRichText } from '@/libs/utils';
 import { type Article } from '@/libs/microcms';
 import PublishedDate from '../Date';
 import styles from './index.module.css';
-import TagList from '../TagList';
-import Profile from '../Profile';
-import Origin from '../Origin';
 import Thumbnail from '../Thumbnail';
 
 type Props = {
@@ -15,27 +12,7 @@ export default function Article({ data }: Props) {
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>{data.title}</h1>
-      {/* <TagList tags={data.tags} /> */}
-      {/* <p className={styles.description}>{data.description}</p> */}
       <div className={styles.meta}>
-        {/* {data.writer && (
-          <div className={styles.writer}>
-            <picture>
-              <source
-                type="image/webp"
-                srcSet={`${data.writer?.image?.url}?fm=webp&fit=crop&w=48&h=48 1x, ${data.writer?.image?.url}?fm=webp&fit=crop&w=48&h=48&dpr=2 2x`}
-              />
-              <img
-                src={data.writer?.image?.url}
-                alt=""
-                className={styles.writerIcon}
-                width={data.writer?.image?.width}
-                height={data.writer?.image?.height}
-              />
-            </picture>
-            <span className={styles.writerName}>{data.writer?.name}</span>
-          </div>
-        )} */}
         <PublishedDate date={data.publishedAt || data.createdAt} />
       </div>
       <Thumbnail thumbnail={data.thumbnail} />
@@ -45,8 +22,6 @@ export default function Article({ data }: Props) {
           __html: `${formatRichText(data.content)}`,
         }}
       />
-      <Origin origin={data.origin} />
-      {/* <Profile writer={data.writer} /> */}
     </main>
   );
 }

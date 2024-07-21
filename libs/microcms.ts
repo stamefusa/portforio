@@ -22,12 +22,6 @@ export type Writer = {
 } & MicroCMSContentId &
   MicroCMSDate;
 
-// 遷移元情報の型定義
-export type Origin = {
-  url?: string;
-  title?: string;
-};
-
 // ブログの型定義
 export type Blog = {
   title: string;
@@ -36,7 +30,6 @@ export type Blog = {
   thumbnail?: MicroCMSImage;
   tags?: Tag[];
   writer?: Writer;
-  origin?: Origin;
 };
 
 export type Article = Blog & MicroCMSContentId & MicroCMSDate;
