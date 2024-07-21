@@ -7,10 +7,9 @@ import Thumbnail from '../Thumbnail';
 
 type Props = {
   article: Article;
-  type: string;
 };
 
-export default function ArticleListItem({ article, type }: Props) {
+export default function ArticleListItem({ article }: Props) {
   return (
     <li className={styles.list}>
       <Link href={`/articles/${article.id}`} className={styles.link}>
