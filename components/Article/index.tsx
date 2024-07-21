@@ -15,7 +15,7 @@ export default function Article({ data }: Props) {
       <div className={styles.meta}>
         <PublishedDate date={data.publishedAt || data.createdAt} />
       </div>
-      <Thumbnail thumbnail={data.thumbnail} />
+      <Thumbnail thumbnail={data.thumbnail} type="detail" />
       <div
         className={styles.content}
         dangerouslySetInnerHTML={{
