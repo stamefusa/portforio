@@ -6,6 +6,10 @@
 .list {
   width: 240px;
   height: auto;
+  border-radius: 10px;
+}
+.list:hover {
+  opacity: 50%;
 }
 
 @media (max-width: 640px) {
