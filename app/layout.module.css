@@ -1,11 +1,25 @@
 .main {
-  width: 720px;
+  width: 270px;
   margin: 0 auto;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 540px) {
   .main {
-    width: auto;
-    padding: 24px;
+    width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 810px) {
+  .main {
+    width: 810px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1080px) {
+  .main {
+    width: 1080px;
+    margin: 0 auto;
   }
 }

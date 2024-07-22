@@ -1,0 +1,22 @@
+.listParent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 540px) {
+  .listParent > * {
+    width: 50%;
+  }
+}
+
+@media (min-width: 810px) {
+  .listParent > * {
+    width: 33%;
+  }
+}
+
+@media (min-width: 1080px) {
+  .listParent > * {
+    width: 25%;
+  }
+}

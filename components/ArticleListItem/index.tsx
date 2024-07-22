@@ -16,9 +16,9 @@ export default function ArticleListItem({ article }: Props) {
         <Thumbnail thumbnail={article.thumbnail} type="list" />
         <dl className={styles.content}>
           <dt className={styles.title}>{article.title}</dt>
-          <dd className={styles.date}>
+          {/* <dd className={styles.date}>
             <PublishedDate date={article.publishedAt || article.createdAt} />
-          </dd>
+          </dd> */}
         </dl>
       </Link>
     </li>

@@ -9,7 +9,7 @@ type Props = {
 
 export default function Thumbnail({ thumbnail, type }: Props) {
   // listかdetailで画像サイズが異なる
-  const thumbnailSize = type === 'list' ? 'w=240&h=126' : 'w=640';
+  const thumbnailSize = type === 'list' ? 'w=240&h=135' : 'w=640';
 
   if (!thumbnail) {
     return (

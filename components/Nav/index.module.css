@@ -8,3 +8,20 @@
   margin-bottom: 40px;
   border-bottom: 1px solid var(--color-border-light);
 }
+
+.ul {
+  display: flex;
+}
+
+.li {
+  padding-left: 40px;
+  padding-right: 40px;
+  font-weight: bold;
+  font-size: 25px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', YuGothic, 'ヒラギノ角ゴ ProN W3',
+    Hiragino Kaku Gothic ProN, Arial, 'メイリオ', Meiryo, sans-serif;
+}
+
+.ul > a:hover {
+  opacity: 50%;
+}

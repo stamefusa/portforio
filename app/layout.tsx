@@ -8,11 +8,11 @@ import styles from './layout.module.css';
 
 export const metadata = {
   metadataBase: new URL(process.env.BASE_URL || 'http://localhost:3000'),
-  title: 'Simple Blog',
-  description: 'A simple blog presented by microCMS',
+  title: 'stamefusa.jp',
+  description: '爲房新太朗が作ってきた、明るく笑えるギャグソウチたちを紹介します。',
   openGraph: {
-    title: 'Simple Blog',
-    description: 'A simple blog presented by microCMS',
+    title: 'stamefusa.jp',
+    description: '爲房新太朗が作ってきた、明るく笑えるギャグソウチたちを紹介します',
     images: '/ogp.png',
   },
   alternates: {
