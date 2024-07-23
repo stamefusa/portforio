@@ -25,14 +25,11 @@ type Props = {
 };
 
 export default async function RootLayout({ children }: Props) {
-  const tags = await getTagList({
-    limit: LIMIT,
-  });
   return (
     <html lang="ja">
       <body>
         <Header />
-        <Nav tags={tags.contents} />
+        <Nav />
         <main className={styles.main}>{children}</main>
         <Footer />
       </body>

@@ -4,11 +4,7 @@ import TagList from '@/components/TagList';
 import SearchField from '@/components/SearchField';
 import styles from './index.module.css';
 
-type Props = {
-  tags: Tag[];
-};
-
-export default function Nav({ tags }: Props) {
+export default function Nav() {
   return (
     <nav className={styles.nav}>
       <ul className={styles.ul}>
