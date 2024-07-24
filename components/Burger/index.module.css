@@ -1,0 +1,9 @@
+.li {
+  list-style: none;
+}
+
+@media (min-width: 540px) {
+  .burger {
+    display: none;
+  }
+}

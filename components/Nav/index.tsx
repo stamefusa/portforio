@@ -1,7 +1,4 @@
 import Link from 'next/link';
-import { Tag } from '@/libs/microcms';
-import TagList from '@/components/TagList';
-import SearchField from '@/components/SearchField';
 import styles from './index.module.css';
 
 export default function Nav() {
@@ -18,8 +15,6 @@ export default function Nav() {
           <li className={styles.li}>Contact</li>
         </Link>
       </ul>
-      {/* <SearchField /> */}
-      {/* <TagList tags={tags} /> */}
     </nav>
   );
 }

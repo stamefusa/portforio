@@ -25,3 +25,9 @@
 .ul > a:hover {
   opacity: 50%;
 }
+
+@media (max-width: 540px) {
+  .nav {
+    display: none;
+  }
+}
