@@ -26,8 +26,8 @@ export default function Thumbnail({ thumbnail, type }: Props) {
     <picture>
       <source
         type="image/webp"
-        media="(max-width: 640px)"
-        srcSet={`${thumbnail?.url}?fm=webp&w=414 1x, ${thumbnail?.url}?fm=webp&w=414&dpr=2 2x`}
+        media="(max-width: 540px)"
+        srcSet={`${thumbnail?.url}?fm=webp&w=540 1x, ${thumbnail?.url}?fm=webp&w=540&dpr=2 2x`}
       />
       <source
         type="image/webp"
