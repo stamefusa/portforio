@@ -8,7 +8,24 @@ export default function Burger() {
     <div id="outer-container" className={styles.burger}>
       <Menu pageWrapId={'page-wrap'} outerContainerId={'outer-container'} right>
         <main id="page-wrap">
-          <Link href="/profile" className="menu-item">
+          <ul className={styles.ul}>
+            <li className={styles.li}>
+              <Link href="/profile" className="menu-item">
+                Profile
+              </Link>
+            </li>
+            <li className={styles.li}>
+              <Link href="/" className="menu-item">
+                Machines
+              </Link>
+            </li>
+            <li className={styles.li}>
+              <Link href="/contact" className="menu-item">
+                Contact
+              </Link>
+            </li>
+          </ul>
+          {/* <Link href="/profile" className="menu-item">
             <li className={styles.li}>Profile</li>
           </Link>
           <Link href="/" className="menu-item">
@@ -16,7 +33,7 @@ export default function Burger() {
           </Link>
           <Link href="/contact" className="menu-item">
             <li className={styles.li}>Contact</li>
-          </Link>
+          </Link> */}
         </main>
       </Menu>
     </div>
