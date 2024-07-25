@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: Props) {
         <main className={styles.main}>{children}</main>
         <Footer />
       </body>
-      <GoogleAnalytics gaId="G-XY5ZS91G75" />
+      <GoogleAnalytics gaId={process.env.GA ?? ''} />
     </html>
   );
 }
