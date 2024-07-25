@@ -1,10 +1,9 @@
-import { getTagList } from '@/libs/microcms';
-import { LIMIT } from '@/constants';
+import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
-import './globals.css';
 import styles from './layout.module.css';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata = {
   metadataBase: new URL(process.env.BASE_URL || 'http://localhost:3000'),
@@ -33,6 +32,7 @@ export default async function RootLayout({ children }: Props) {
         <main className={styles.main}>{children}</main>
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-XY5ZS91G75" />
     </html>
   );
 }
