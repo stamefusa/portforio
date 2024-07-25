@@ -9,7 +9,10 @@ export default function Profile() {
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.h1}>爲房 新太朗（Shintaro Tamefusa）</h1>
+      <h1 className={styles.h1}>
+        <span>爲房 新太朗</span>
+        <span>（Shintaro Tamefusa）</span>
+      </h1>
       <Thumbnail thumbnail={image} type="detail" />
       <div className={styles.body}>
         <div className={styles.profile}>
