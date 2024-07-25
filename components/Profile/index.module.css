@@ -52,3 +52,17 @@
     width: 540px;
   }
 }
+
+@media (max-width: 540px) {
+  .h1 {
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .h2 {
+    font-size: 23px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
