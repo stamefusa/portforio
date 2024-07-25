@@ -9,7 +9,7 @@ export default function Header() {
       <Link href="/">
         <Image
           src="/logo.svg"
-          alt="SIMPLE"
+          alt="stamefusa.jp"
           className={styles.logo}
           width={348}
           height={133}
