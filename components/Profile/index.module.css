@@ -54,6 +54,10 @@
 }
 
 @media (max-width: 540px) {
+  .wrapper {
+    width: 100%;
+  }
+
   .h1 {
     font-size: 25px;
     text-align: center;
