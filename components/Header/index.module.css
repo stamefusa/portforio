@@ -3,6 +3,11 @@
 }
 
 .logo {
-  height: 24px;
-  width: auto;
+  display: flex;
+  /* justify-content: center; */
+}
+
+.logo img {
+  width: 160px;
+  height: auto;
 }

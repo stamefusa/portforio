@@ -6,16 +6,11 @@ import Burger from '@/components/Burger';
 export default function Header() {
   return (
     <header className={styles.header}>
-      <Link href="/">
-        <Image
-          src="/logo.svg"
-          alt="stamefusa.jp"
-          className={styles.logo}
-          width={348}
-          height={133}
-          priority
-        />
-      </Link>
+      <div className={styles.logo}>
+        <Link href="/">
+          <Image src="/logo.png" alt="stamefusa.jp" width={305} height={64} priority />
+        </Link>
+      </div>
       <Burger />
     </header>
   );
