@@ -12,7 +12,6 @@ export const metadata = {
   openGraph: {
     title: 'stamefusa.jp',
     description: '爲房新太朗が作ってきた、明るく笑えるギャグソウチたちを紹介します',
-    images: '/ogp.jpg',
   },
   alternates: {
     canonical: '/',
