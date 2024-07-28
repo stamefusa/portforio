@@ -6,7 +6,7 @@ import styles from './layout.module.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata = {
-  metadataBase: new URL(process.env.BASE_URL || 'http://localhost:3000'),
+  metadataBase: new URL('https://stamefusa.jp/'),
   title: 'stamefusa.jp',
   description: '爲房新太朗が作ってきた、明るく笑えるギャグソウチたちを紹介します。',
   openGraph: {

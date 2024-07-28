@@ -26,6 +26,9 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       description: data.description,
       images: [data?.thumbnail?.url || ''],
     },
+    alternates: {
+      canonical: '/articles/' + `${params.slug}`,
+    },
   };
 }
 
