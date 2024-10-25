@@ -82,6 +82,11 @@ export default function Profile() {
                 頭の悪いメカ 発表会２ by fabcross × デイリーポータルＺ supported by 東急ハンズ
               </a>
             </li>
+            <li>
+              <a href="https://tokyocultureculture.com/event/general/35650" target="_blank">
+                峯田茉優の「カルカルロボット部」本日創立！
+              </a>
+            </li>
           </ul>
         </div>
       </div>
