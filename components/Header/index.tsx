@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './index.module.css';
-import Burger from '@/components/Burger';
 
 export default function Header() {
   return (
@@ -11,7 +10,6 @@ export default function Header() {
           <Image src="/logo.png" alt="stamefusa.jp" width={305} height={64} priority />
         </Link>
       </div>
-      <Burger />
     </header>
   );
 }
