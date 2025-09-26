@@ -1,4 +1,6 @@
 import { MicroCMSImage } from 'microcms-js-sdk';
+import Image from 'next/image';
+import Link from 'next/link';
 import Thumbnail from '../Thumbnail';
 import styles from './index.module.css';
 
@@ -13,6 +15,18 @@ export default function Profile() {
         <span>爲房 新太朗</span>
         <span>（Shintaro Tamefusa）</span>
       </h1>
+      <div className={styles.social}>
+        <Link href="https://x.com/stamefusa" target="_blank" className={styles.socialLink}>
+          <Image 
+            src="/x-logo-black.png" 
+            alt="X" 
+            width={16} 
+            height={16} 
+            className={styles.xIcon}
+          />
+          <span className={styles.handle}>@stamefusa</span>
+        </Link>
+      </div>
       <Thumbnail thumbnail={image} type="detail" />
       <div className={styles.body}>
         <div className={styles.profile}>
