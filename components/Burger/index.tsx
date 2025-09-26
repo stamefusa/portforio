@@ -1,40 +1,42 @@
 'use client';
+import { useState } from 'react';
 import Link from 'next/link';
-import { slide as Menu } from 'react-burger-menu';
+import { Squash as Hamburger } from 'hamburger-react';
+import { Menu, MenuItem } from '@szhsin/react-menu';
+import '@szhsin/react-menu/dist/index.css';
 import styles from './index.module.css';
 
 export default function Burger() {
+  const [isOpen, setOpen] = useState(false);
+
   return (
-    <div id="outer-container" className={styles.burger}>
-      <Menu pageWrapId={'page-wrap'} outerContainerId={'outer-container'} right>
-        <main id="page-wrap">
-          <ul className={styles.ul}>
-            <li className={styles.li}>
-              <Link href="/profile" className="menu-item">
-                Profile
-              </Link>
-            </li>
-            <li className={styles.li}>
-              <Link href="/" className="menu-item">
-                Machines
-              </Link>
-            </li>
-            <li className={styles.li}>
-              <Link href="/contact" className="menu-item">
-                Contact
-              </Link>
-            </li>
-          </ul>
-          {/* <Link href="/profile" className="menu-item">
-            <li className={styles.li}>Profile</li>
+    <div className={styles.burger}>
+      <Menu
+        menuButton={
+          <div className={styles.hamburgerButton}>
+            <Hamburger toggled={isOpen} toggle={setOpen} size={24} />
+          </div>
+        }
+        transition
+        align="end"
+        arrow={false}
+        onMenuChange={(e) => setOpen(e.open)}
+      >
+        <MenuItem>
+          <Link href="/profile" className={styles.menuLink}>
+            Profile
           </Link>
-          <Link href="/" className="menu-item">
-            <li className={styles.li}>Machines</li>
+        </MenuItem>
+        <MenuItem>
+          <Link href="/" className={styles.menuLink}>
+            Machines
           </Link>
-          <Link href="/contact" className="menu-item">
-            <li className={styles.li}>Contact</li>
-          </Link> */}
-        </main>
+        </MenuItem>
+        <MenuItem>
+          <Link href="/contact" className={styles.menuLink}>
+            Contact
+          </Link>
+        </MenuItem>
       </Menu>
     </div>
   );
