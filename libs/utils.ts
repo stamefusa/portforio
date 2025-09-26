@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
-import cheerio from 'cheerio';
+import { load as loadHtml } from 'cheerio';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/hybrid.css';
 
@@ -11,7 +11,7 @@ export const formatDate = (date: string) => {
 };
 
 export const formatRichText = (richText: string) => {
-  const $ = cheerio.load(richText);
+  const $ = loadHtml(richText);
   const highlight = (text: string, lang?: string) => {
     if (!lang) return hljs.highlightAuto(text);
     try {
