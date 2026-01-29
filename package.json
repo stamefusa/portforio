@@ -18,7 +18,7 @@
     "printWidth": 100
   },
   "engines": {
-    "node": ">=22.x"
+    "node": ">=24.x"
   },
   "dependencies": {
     "@next/third-parties": "^16.1.6",
