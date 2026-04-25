@@ -1,0 +1,27 @@
+---
+import type { Work } from '../lib/microcms';
+
+type Props = {
+  work: Work;
+};
+
+const { work } = Astro.props;
+---
+
+<article class="work-card">
+  <a class="work-card__link" href={`/blog/${work.id}/`}>
+    {work.thumbnail?.url && (
+      <img
+        class="work-card__image"
+        src={work.thumbnail.url}
+        alt={`${work.title} のサムネイル`}
+        loading="lazy"
+      />
+    )}
+    <div class="work-card__body">
+      <p class="work-card__meta">{work.publishedAt ? new Date(work.publishedAt).toLocaleDateString('ja-JP') : 'Work'}</p>
+      <h2>{work.title}</h2>
+      <p>{work.description}</p>
+    </div>
+  </a>
+</article>

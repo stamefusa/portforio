@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { getWorksList } from '../../lib/microcms';
+
+const works = await getWorksList();
+---
+
+<BaseLayout title="Blog | stamefusa.jp" description="ブログ記事の一覧ページです。">
+  <section class="section">
+    <div class="container section__header">
+      <div>
+        <p class="section__eyebrow">Blog</p>
+        <h1>ブログ一覧</h1>
+      </div>
+      <p>{works.totalCount}件の記事を掲載しています。</p>
+    </div>
+    <div class="container works-grid">
+      {works.contents.map((work) => <WorkCard work={work} />)}
+    </div>
+  </section>
+</BaseLayout>

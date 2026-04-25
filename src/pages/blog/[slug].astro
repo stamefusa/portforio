@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getWorksList } from '../../lib/microcms';
+
+export async function getStaticPaths() {
+  const works = await getWorksList();
+
+  return works.contents.map((work) => ({
+    params: { slug: work.id },
+    props: { work },
+  }));
+}
+
+const { work } = Astro.props;
+---
+
+<BaseLayout title={`${work.title} | stamefusa.jp`} description={work.description}>
+  <article class="section">
+    <div class="container work-detail">
+      <a class="back-link" href="/blog">&larr; Blogへ戻る</a>
+      <p class="section__eyebrow">Blog Detail</p>
+      <h1>{work.title}</h1>
+      <p class="work-detail__description">{work.description}</p>
+      {work.thumbnail?.url && (
+        <img
+          class="work-detail__image"
+          src={work.thumbnail.url}
+          alt={`${work.title} のサムネイル`}
+        />
+      )}
+      <div class="rich-content" set:html={work.content} />
+    </div>
+  </article>
+</BaseLayout>

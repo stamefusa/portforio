@@ -1,0 +1,30 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Blog' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-logo" href="/">stamefusa.jp</a>
+    <nav aria-label="Primary navigation">
+      <ul class="site-nav">
+        {links.map((link) => {
+          const isCurrent = currentPath === link.href || currentPath.startsWith(`${link.href}/`);
+
+          return (
+            <li>
+              <a class:list={['site-nav__link', { 'is-current': isCurrent }]} href={link.href}>
+                {link.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  </div>
+</header>
