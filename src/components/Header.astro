@@ -6,6 +6,14 @@ const links = [
 ];
 
 const currentPath = Astro.url.pathname;
+
+function isCurrentPath(href: string) {
+  if (href === '/') {
+    return currentPath === '/' || currentPath.startsWith('/articles/');
+  }
+
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+}
 ---
 
 <header class="site-header">
@@ -15,11 +23,34 @@ const currentPath = Astro.url.pathname;
         <img src="/logo.png" alt="stamefusa.jp" width="305" height="64" />
       </a>
     </div>
+    <div class="site-burger">
+      <button
+        type="button"
+        class="site-burger__button"
+        aria-label="メニューを開く"
+        aria-expanded="false"
+        aria-controls="site-mobile-menu"
+        data-burger-button
+      >
+        <span class="site-burger__bar"></span>
+        <span class="site-burger__bar"></span>
+        <span class="site-burger__bar"></span>
+      </button>
+      <nav class="site-mobile-menu" id="site-mobile-menu" aria-label="Mobile navigation" hidden data-mobile-menu>
+        <ul class="site-mobile-menu__list">
+          {links.map((link) => (
+            <li class:list={['site-mobile-menu__item', { 'is-current': isCurrentPath(link.href) }]}>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
   </div>
   <nav class="site-nav" aria-label="Primary navigation">
     <ul class="site-nav__list">
       {links.map((link) => {
-        const isCurrent = currentPath === link.href || currentPath.startsWith(`${link.href}/`);
+        const isCurrent = isCurrentPath(link.href);
 
         return (
           <li class:list={['site-nav__item', { 'is-current': isCurrent }]}>
@@ -30,3 +61,39 @@ const currentPath = Astro.url.pathname;
     </ul>
   </nav>
 </header>
+
+<script>
+  const button = document.querySelector('[data-burger-button]');
+  const menu = document.querySelector('[data-mobile-menu]');
+
+  if (button instanceof HTMLButtonElement && menu instanceof HTMLElement) {
+    const setOpen = (open: boolean) => {
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+      button.classList.toggle('is-open', open);
+      menu.hidden = !open;
+    };
+
+    button.addEventListener('click', () => {
+      setOpen(button.getAttribute('aria-expanded') !== 'true');
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+
+      if (target instanceof Node && !button.contains(target) && !menu.contains(target)) {
+        setOpen(false);
+      }
+    });
+  }
+</script>
