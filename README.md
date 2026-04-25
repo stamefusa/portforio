@@ -34,6 +34,7 @@ npm run dev
 
 - `/`
 - `/about`
+- `/contact`
 - `/articles/[slug]`
 
 すべてビルド時に生成される静的ページです。

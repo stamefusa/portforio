@@ -439,6 +439,30 @@ img {
   margin-bottom: 5px;
 }
 
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.contact__title {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.contact__body {
+  font-size: 15px;
+  text-align: center;
+}
+
+.contact__notice {
+  font-size: 12px;
+  text-align: center;
+}
+
 .site-footer {
   padding: 30px 24px;
   text-align: center;
