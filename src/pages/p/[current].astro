@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { getTotalPages, getWorksPageList } from '../../lib/microcms';
+
+export async function getStaticPaths() {
+  const firstPage = await getWorksPageList();
+  const totalPages = getTotalPages(firstPage.totalCount);
+
+  return Array.from({ length: Math.max(totalPages - 1, 0) }).map((_, index) => {
+    const page = index + 2;
+
+    return {
+      params: { current: String(page) },
+      props: { currentPage: page, totalPages },
+    };
+  });
+}
+
+const { currentPage, totalPages } = Astro.props;
+const works = await getWorksPageList(currentPage);
+---
+
+<BaseLayout
+  title={`Machines ${currentPage} | stamefusa.jp`}
+  description="爲房新太朗が作ってきた、明るく笑えるギャグソウチたちを紹介します。"
+>
+  <section class="intro">
+    <div class="intro__body">
+      <span>爲房 新太朗がこれまでに</span>
+      <span>作ってきたギャグソウチ</span>
+    </div>
+  </section>
+  <ul class="works-grid">
+    {works.contents.map((work) => <WorkCard work={work} />)}
+  </ul>
+  {totalPages > 1 && (
+    <ul class="pagination">
+      {Array.from({ length: totalPages }).map((_, index) => {
+        const page = index + 1;
+
+        return (
+          <li class="pagination__list">
+            {page === currentPage ? (
+              <span class="pagination__item pagination__item--current">{page}</span>
+            ) : (
+              <a class="pagination__item" href={page === 1 ? '/' : `/p/${page}/`}>{page}</a>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  )}
+</BaseLayout>

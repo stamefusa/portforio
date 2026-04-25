@@ -2,6 +2,15 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getWorksList } from '../../lib/microcms';
 
+function formatDate(date: string) {
+  const value = new Date(date);
+  const year = value.getFullYear();
+  const month = String(value.getMonth() + 1).padStart(2, '0');
+  const day = value.getDate();
+
+  return `${year}/${month}/${day}`;
+}
+
 export async function getStaticPaths() {
   const works = await getWorksList();
 
@@ -19,14 +28,31 @@ const { work } = Astro.props;
     <h1 class="article__title">{work.title}</h1>
     <div class="article__meta">
       <span class="article__date">
-        {new Date(work.publishedAt || work.createdAt).toLocaleDateString('ja-JP')}
+        {formatDate(work.publishedAt || work.createdAt)}
       </span>
     </div>
-    <img
-      class="article__thumbnail"
-      src={work.thumbnail?.url ? `${work.thumbnail.url}?fm=webp&fit=crop&w=640` : '/no-image.png'}
-      alt=""
-    />
+    {work.thumbnail?.url ? (
+      <picture>
+        <source
+          type="image/webp"
+          media="(max-width: 540px)"
+          srcset={`${work.thumbnail.url}?fm=webp&w=540 1x, ${work.thumbnail.url}?fm=webp&w=540&dpr=2 2x`}
+        />
+        <source
+          type="image/webp"
+          srcset={`${work.thumbnail.url}?fm=webp&w=640 1x, ${work.thumbnail.url}?fm=webp&w=640&dpr=2 2x`}
+        />
+        <img
+          class="article__thumbnail"
+          src={work.thumbnail.url}
+          alt=""
+          width={work.thumbnail.width}
+          height={work.thumbnail.height}
+        />
+      </picture>
+    ) : (
+      <img class="article__thumbnail" src="/no-image.png" alt="No Image" />
+    )}
     <div class="rich-content" set:html={work.content} />
   </article>
 </BaseLayout>

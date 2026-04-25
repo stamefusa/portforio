@@ -3,6 +3,7 @@ import type { MicroCMSDate, MicroCMSImage, MicroCMSListResponse } from 'microcms
 
 const WORKS_ENDPOINT = 'blog';
 const FETCH_LIMIT = 100;
+export const PAGE_LIMIT = 24;
 
 export type Work = {
   title: string;
@@ -41,6 +42,23 @@ async function getWorksPage(offset = 0): Promise<MicroCMSListResponse<Work>> {
       orders: '-publishedAt',
     },
   });
+}
+
+export async function getWorksPageList(page = 1, limit = PAGE_LIMIT) {
+  const client = getClient();
+
+  return client.getList<Work>({
+    endpoint: WORKS_ENDPOINT,
+    queries: {
+      limit,
+      offset: limit * (page - 1),
+      orders: '-publishedAt',
+    },
+  });
+}
+
+export function getTotalPages(totalCount: number, limit = PAGE_LIMIT) {
+  return Math.ceil(totalCount / limit);
 }
 
 export async function getWorksList() {

@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import WorkCard from '../components/WorkCard.astro';
-import { getWorksList } from '../lib/microcms';
+import { getTotalPages, getWorksPageList } from '../lib/microcms';
 
-const works = await getWorksList();
+const works = await getWorksPageList();
+const totalPages = getTotalPages(works.totalCount);
 ---
 
 <BaseLayout
@@ -19,4 +20,21 @@ const works = await getWorksList();
   <ul class="works-grid">
     {works.contents.map((work) => <WorkCard work={work} />)}
   </ul>
+  {totalPages > 1 && (
+    <ul class="pagination">
+      {Array.from({ length: totalPages }).map((_, index) => {
+        const page = index + 1;
+
+        return (
+          <li class="pagination__list">
+            {page === 1 ? (
+              <span class="pagination__item pagination__item--current">{page}</span>
+            ) : (
+              <a class="pagination__item" href={`/p/${page}/`}>{page}</a>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  )}
 </BaseLayout>
