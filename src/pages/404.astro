@@ -2,7 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="404 | stamefusa.jp" description="ページが見つかりませんでした。">
+<BaseLayout
+  title="404 | stamefusa.jp"
+  description="ページが見つかりませんでした。"
+  canonicalPath="/404"
+  noindex={true}
+>
   <div class="not-found">
     <dl>
       <dt class="not-found__title">404</dt>

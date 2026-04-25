@@ -11,6 +11,19 @@ function formatDate(date: string) {
   return `${year}/${month}/${day}`;
 }
 
+function getMetaDescription(work: { description?: string; content: string }) {
+  if (work.description?.trim()) {
+    return work.description.trim();
+  }
+
+  const plainText = work.content
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  return plainText.slice(0, 120) || 'stamefusa のポートフォリオサイトです。';
+}
+
 export async function getStaticPaths() {
   const works = await getWorksList();
 
@@ -23,7 +36,13 @@ export async function getStaticPaths() {
 const { work } = Astro.props;
 ---
 
-<BaseLayout title={`${work.title} | stamefusa.jp`} description={work.description}>
+<BaseLayout
+  title={`${work.title} | stamefusa.jp`}
+  description={getMetaDescription(work)}
+  canonicalPath={`/articles/${work.id}/`}
+  ogImage={work.thumbnail?.url || '/og-default.jpg'}
+  ogType="article"
+>
   <article class="article">
     <h1 class="article__title">{work.title}</h1>
     <div class="article__meta">

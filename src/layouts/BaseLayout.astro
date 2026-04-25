@@ -6,12 +6,25 @@ import '../styles/global.css';
 type Props = {
   title: string;
   description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
 };
 
 const {
   title,
   description = 'stamefusa のポートフォリオサイトです。',
+  canonicalPath = Astro.url.pathname,
+  ogImage = '/og-default.jpg',
+  ogType = 'website',
+  noindex = false,
 } = Astro.props;
+
+const site = Astro.site ?? new URL('https://stamefusa.jp');
+const canonicalUrl = new URL(canonicalPath, site).toString();
+const ogImageUrl = new URL(ogImage, site).toString();
+const gaMeasurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID;
 ---
 
 <!doctype html>
@@ -22,7 +35,29 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {gaMeasurementId && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script
+          is:inline
+          set:html={`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaMeasurementId}');`}
+        />
+      </>
+    )}
   </head>
   <body>
     <Header />
