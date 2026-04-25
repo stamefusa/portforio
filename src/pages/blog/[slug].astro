@@ -15,20 +15,18 @@ const { work } = Astro.props;
 ---
 
 <BaseLayout title={`${work.title} | stamefusa.jp`} description={work.description}>
-  <article class="section">
-    <div class="container work-detail">
-      <a class="back-link" href="/blog">&larr; Blogへ戻る</a>
-      <p class="section__eyebrow">Blog Detail</p>
-      <h1>{work.title}</h1>
-      <p class="work-detail__description">{work.description}</p>
-      {work.thumbnail?.url && (
-        <img
-          class="work-detail__image"
-          src={work.thumbnail.url}
-          alt={`${work.title} のサムネイル`}
-        />
-      )}
-      <div class="rich-content" set:html={work.content} />
+  <article class="article">
+    <h1 class="article__title">{work.title}</h1>
+    <div class="article__meta">
+      <span class="article__date">
+        {new Date(work.publishedAt || work.createdAt).toLocaleDateString('ja-JP')}
+      </span>
     </div>
+    <img
+      class="article__thumbnail"
+      src={work.thumbnail?.url ? `${work.thumbnail.url}?fm=webp&fit=crop&w=640` : '/no-image.png'}
+      alt=""
+    />
+    <div class="rich-content" set:html={work.content} />
   </article>
 </BaseLayout>

@@ -6,22 +6,16 @@ type Props = {
 };
 
 const { work } = Astro.props;
+const thumbnailSrc = work.thumbnail?.url
+  ? `${work.thumbnail.url}?fm=webp&fit=crop&w=240&h=135`
+  : '/no-image.png';
 ---
 
 <article class="work-card">
   <a class="work-card__link" href={`/blog/${work.id}/`}>
-    {work.thumbnail?.url && (
-      <img
-        class="work-card__image"
-        src={work.thumbnail.url}
-        alt={`${work.title} のサムネイル`}
-        loading="lazy"
-      />
-    )}
+    <img class="work-card__image" src={thumbnailSrc} alt="" loading="lazy" />
     <div class="work-card__body">
-      <p class="work-card__meta">{work.publishedAt ? new Date(work.publishedAt).toLocaleDateString('ja-JP') : 'Work'}</p>
-      <h2>{work.title}</h2>
-      <p>{work.description}</p>
+      <h2 class="work-card__title">{work.title}</h2>
     </div>
   </a>
 </article>

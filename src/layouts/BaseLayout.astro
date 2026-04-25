@@ -24,12 +24,10 @@ const {
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
   </head>
   <body>
-    <div class="page-shell">
-      <Header />
-      <main class="page-main">
-        <slot />
-      </main>
-      <Footer />
-    </div>
+    <Header />
+    <main class="page-main">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

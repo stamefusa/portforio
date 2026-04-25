@@ -1,43 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
 import WorkCard from '../components/WorkCard.astro';
-import { getFeaturedWorks } from '../lib/microcms';
+import { getWorksList } from '../lib/microcms';
 
-const featuredWorks = await getFeaturedWorks(3);
+const works = await getWorksList();
 ---
 
 <BaseLayout
   title="stamefusa.jp"
-  description="Astro と microCMS で構成した stamefusa のポートフォリオサイトです。"
+  description="爲房新太朗が作ってきた、明るく笑えるギャグソウチたちを紹介します。"
 >
-  <Hero
-    title="明るく、手触りのあるものをつくる。"
-    lead="microCMS のコンテンツをビルド時に取り込み、Cloudflare Pages で静的配信するポートフォリオです。"
-  />
-
-  <section class="section">
-    <div class="container section__header">
-      <div>
-        <p class="section__eyebrow">Featured Blog</p>
-        <h2>最近の投稿</h2>
-      </div>
-      <a class="section__link" href="/blog">すべて見る</a>
-    </div>
-    <div class="container works-grid">
-      {featuredWorks.map((work) => <WorkCard work={work} />)}
+  <section class="intro">
+    <div class="intro__body">
+      <span>爲房 新太朗がこれまでに</span>
+      <span>作ってきたギャグソウチ</span>
     </div>
   </section>
-
-  <section class="section section--alt">
-    <div class="container callout">
-      <p class="section__eyebrow">About</p>
-      <h2>Web と表現のあいだを行き来しながらつくっています。</h2>
-      <p>
-        ポートフォリオ本体は静的に保ちつつ、個別の Web アプリや実験的なプロジェクトは別 URL
-        に分離して運用する前提です。
-      </p>
-      <a class="button button--primary" href="/about">プロフィールを見る</a>
-    </div>
-  </section>
+  <ul class="works-grid">
+    {works.contents.map((work) => <WorkCard work={work} />)}
+  </ul>
 </BaseLayout>

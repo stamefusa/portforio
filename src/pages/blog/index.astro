@@ -7,16 +7,12 @@ const works = await getWorksList();
 ---
 
 <BaseLayout title="Blog | stamefusa.jp" description="ブログ記事の一覧ページです。">
-  <section class="section">
-    <div class="container section__header">
-      <div>
-        <p class="section__eyebrow">Blog</p>
-        <h1>ブログ一覧</h1>
-      </div>
-      <p>{works.totalCount}件の記事を掲載しています。</p>
-    </div>
-    <div class="container works-grid">
-      {works.contents.map((work) => <WorkCard work={work} />)}
-    </div>
+  <section class="page-heading">
+    <h1>Machines</h1>
+    <p>{works.totalCount}件の記事を掲載しています。</p>
   </section>
+  <ul class="works-grid">
+    {works.contents.map((work) => <WorkCard work={work} />)}
+  </ul>
+  <p class="page-note">記事一覧は microCMS の blog エンドポイントからビルド時に取得しています。</p>
 </BaseLayout>

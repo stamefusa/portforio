@@ -3,19 +3,94 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="About | stamefusa.jp" description="stamefusa のプロフィールページです。">
-  <section class="section">
-    <div class="container prose-stack">
-      <p class="section__eyebrow">About</p>
-      <h1>stamefusa</h1>
-      <p>
-        デザイン、フロントエンド、コンテンツ設計をまたぎながら、明るさとユーモアが残る体験づくりを続けています。
-      </p>
-      <p>
-        このサイトは Astro と microCMS を使った静的サイトとして構成し、作品一覧とプロフィールをシンプルに届けることに集中しています。
-      </p>
-      <p>
-        Web アプリケーションや検証用の実装は別リポジトリ・別 URL に切り出し、ここではポートフォリオとして必要な文脈だけを見やすく整理します。
-      </p>
+  <section class="profile">
+    <h1 class="profile__title">
+      <span>爲房 新太朗</span>
+      <span>（Shintaro Tamefusa）</span>
+    </h1>
+    <div class="profile__social">
+      <a href="https://x.com/stamefusa" target="_blank" rel="noreferrer" class="profile__social-link">
+        <img src="/x-logo-black.png" alt="X" width="16" height="16" />
+        <span>@stamefusa</span>
+      </a>
+    </div>
+    <img
+      class="profile__image"
+      src="https://images.microcms-assets.io/assets/72d43dc19932497593b8e2d78e9e6651/24069d84fc604856ad2f4601b82c1c2f/profile.jpg"
+      alt="爲房新太朗"
+      width="640"
+    />
+    <div class="profile__body">
+      <section class="profile__section">
+        <h2>プロフィール</h2>
+        <p>
+          1987年兵庫県生まれで二児の父。
+          <br />
+          役に立つ・便利といった機能性を無視した、明るく笑えるギャグソウチを作っている。
+        </p>
+        <p>
+          2014年に開催された
+          <a href="https://dailyportalz.jp/b/rookie2014/result.htm" target="_blank" rel="noreferrer">
+            デイリーポータルZ新人賞
+          </a>
+          で「惜しかった作品たち」に選ばれたことをきっかけに、2015年より同サイトで工作記事を中心に執筆。
+          <br />
+          開発したギャグソウチを Maker Faire などのイベントで展示しており、付き添いで来た人を笑わせることを目標にしている。
+        </p>
+        <p>難しい名字のため、家族が偽名で飲食店の予約をするのが悩みである。</p>
+      </section>
+      <section class="profile__section">
+        <h2>メディア出演・掲載</h2>
+        <h3>テレビ</h3>
+        <ul>
+          <li>
+            <a href="https://www.youtube.com/watch?v=pFK3S02A_SI" target="_blank" rel="noreferrer">
+              バナナサンド（パイロット版・TBS）
+            </a>
+          </li>
+          <li>
+            <a href="https://www.tv-hokkaido.co.jp/info/exit_ayashii_tv/" target="_blank" rel="noreferrer">
+              EXITのアヤシイTV アチ～の見つけました！（テレビ北海道）
+            </a>
+          </li>
+        </ul>
+        <h3>ウェブサイト（作品紹介除く）</h3>
+        <ul>
+          <li>
+            <a href="https://www.youtube.com/watch?v=s9oAUyBTfOM" target="_blank" rel="noreferrer">
+              DJみそしるとMCごはん 『The Gang Eat More』
+            </a>
+          </li>
+          <li>
+            <a href="https://meetscareer.tenshoku.mynavi.jp/entry/20211229-tamefusa" target="_blank" rel="noreferrer">
+              役に立つこと・むだなことの両立で自分のバランスが取れる。工作ライター爲房新太朗さんのライフワークバランス
+            </a>
+          </li>
+        </ul>
+        <h3>イベント</h3>
+        <ul>
+          <li>
+            <a href="https://dailyportalz.jp/b/iaga2014/" target="_blank" rel="noreferrer">
+              国際GIFアニメアワード2014
+            </a>
+          </li>
+          <li>
+            <a href="https://tokyocultureculture.com/event/general/17628" target="_blank" rel="noreferrer">
+              頭の悪いメカ 発表会 by fabcross × デイリーポータルＺ
+            </a>
+          </li>
+          <li>
+            <a href="https://tokyocultureculture.com/event/general/20021" target="_blank" rel="noreferrer">
+              頭の悪いメカ 発表会２ by fabcross × デイリーポータルＺ supported by 東急ハンズ
+            </a>
+          </li>
+          <li>
+            <a href="https://tokyocultureculture.com/event/general/35650" target="_blank" rel="noreferrer">
+              峯田茉優の「カルカルロボット部」本日創立！
+            </a>
+          </li>
+        </ul>
+      </section>
     </div>
   </section>
 </BaseLayout>
