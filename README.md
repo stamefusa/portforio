@@ -34,8 +34,7 @@ npm run dev
 
 - `/`
 - `/about`
-- `/blog`
-- `/blog/[slug]`
+- `/articles/[slug]`
 
 すべてビルド時に生成される静的ページです。
 
@@ -51,7 +50,7 @@ npm run dev
 
 - `src/lib/microcms.ts` で `blog` エンドポイントからデータを取得します
 - クライアントサイド fetch は行わず、すべて Astro のビルド時に取得します
-- `src/pages/blog/[slug].astro` の `getStaticPaths()` で記事詳細ページを静的生成します
+- `src/pages/articles/[slug].astro` の `getStaticPaths()` で記事詳細ページを静的生成します
 
 ## Webhook 運用
 
