@@ -12,8 +12,8 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "12",
-    "astro": "^5.7.0",
+    "@astrojs/cloudflare": "13",
+    "astro": "^6.1.9",
     "microcms-js-sdk": "^2.7.0"
   },
   "devDependencies": {
