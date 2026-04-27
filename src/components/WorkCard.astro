@@ -8,15 +8,16 @@ type Props = {
 
 const { work, priority = false } = Astro.props;
 
-const THUMBNAIL_WIDTHS = [360, 540, 720] as const;
+const THUMBNAIL_WIDTHS = [360, 480, 600, 720] as const;
 const THUMBNAIL_HEIGHTS = {
   360: 203,
-  540: 304,
+  480: 270,
+  600: 338,
   720: 405,
 } as const;
 const THUMBNAIL_SIZES =
   '(min-width: 1080px) 240px, (min-width: 810px) 237px, (min-width: 540px) 240px, calc(90vw - 30px)';
-const THUMBNAIL_QUALITY = 45;
+const THUMBNAIL_QUALITY = 35;
 
 function getThumbnailUrl(url: string, width: (typeof THUMBNAIL_WIDTHS)[number]) {
   const height = THUMBNAIL_HEIGHTS[width];
@@ -24,7 +25,7 @@ function getThumbnailUrl(url: string, width: (typeof THUMBNAIL_WIDTHS)[number]) 
 }
 
 const thumbnailBaseUrl = work.thumbnail?.url;
-const thumbnailSrc = thumbnailBaseUrl ? getThumbnailUrl(thumbnailBaseUrl, 540) : null;
+const thumbnailSrc = thumbnailBaseUrl ? getThumbnailUrl(thumbnailBaseUrl, 600) : null;
 const thumbnailSrcSet = thumbnailBaseUrl
   ? THUMBNAIL_WIDTHS.map((width) => `${getThumbnailUrl(thumbnailBaseUrl, width)} ${width}w`).join(', ')
   : null;
