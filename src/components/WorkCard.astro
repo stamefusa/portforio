@@ -3,38 +3,65 @@ import type { Work } from '../lib/microcms';
 
 type Props = {
   work: Work;
+  priority?: boolean;
 };
 
-const { work } = Astro.props;
+const { work, priority = false } = Astro.props;
+
+const THUMBNAIL_WIDTHS = [360, 540, 720] as const;
+const THUMBNAIL_HEIGHTS = {
+  360: 203,
+  540: 304,
+  720: 405,
+} as const;
+const THUMBNAIL_SIZES =
+  '(min-width: 1080px) 240px, (min-width: 810px) 237px, (min-width: 540px) 240px, calc(90vw - 30px)';
+const THUMBNAIL_QUALITY = 45;
+
+function getThumbnailUrl(url: string, width: (typeof THUMBNAIL_WIDTHS)[number]) {
+  const height = THUMBNAIL_HEIGHTS[width];
+  return `${url}?fm=webp&fit=crop&w=${width}&h=${height}&q=${THUMBNAIL_QUALITY}`;
+}
+
+const thumbnailBaseUrl = work.thumbnail?.url;
+const thumbnailSrc = thumbnailBaseUrl ? getThumbnailUrl(thumbnailBaseUrl, 540) : null;
+const thumbnailSrcSet = thumbnailBaseUrl
+  ? THUMBNAIL_WIDTHS.map((width) => `${getThumbnailUrl(thumbnailBaseUrl, width)} ${width}w`).join(', ')
+  : null;
 ---
 
-<article class="work-card">
-  <a class="work-card__link" href={`/articles/${work.id}/`}>
-    {work.thumbnail?.url ? (
-      <picture>
-        <source
-          type="image/webp"
-          media="(max-width: 540px)"
-          srcset={`${work.thumbnail.url}?fm=webp&w=540 1x, ${work.thumbnail.url}?fm=webp&w=540&dpr=2 2x`}
-        />
-        <source
-          type="image/webp"
-          srcset={`${work.thumbnail.url}?fm=webp&fit=crop&w=240&h=135 1x, ${work.thumbnail.url}?fm=webp&fit=crop&w=240&h=135&dpr=2 2x`}
-        />
+<li class="work-card">
+  <article>
+    <a class="work-card__link" href={`/articles/${work.id}/`}>
+      {thumbnailSrc && thumbnailSrcSet ? (
+        <picture>
+          <source type="image/webp" srcset={thumbnailSrcSet} sizes={THUMBNAIL_SIZES} />
+          <img
+            class="work-card__image"
+            src={thumbnailSrc}
+            srcset={thumbnailSrcSet}
+            sizes={THUMBNAIL_SIZES}
+            alt=""
+            width="720"
+            height="405"
+            loading={priority ? 'eager' : 'lazy'}
+            fetchpriority={priority ? 'high' : undefined}
+            decoding={priority ? 'sync' : 'async'}
+          />
+        </picture>
+      ) : (
         <img
           class="work-card__image"
-          src={work.thumbnail.url}
-          alt=""
-          width={work.thumbnail.width}
-          height={work.thumbnail.height}
-          loading="lazy"
+          src="/no-image.png"
+          alt="No Image"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchpriority={priority ? 'high' : undefined}
+          decoding={priority ? 'sync' : 'async'}
         />
-      </picture>
-    ) : (
-      <img class="work-card__image" src="/no-image.png" alt="No Image" loading="lazy" />
-    )}
-    <div class="work-card__body">
-      <h2 class="work-card__title">{work.title}</h2>
-    </div>
-  </a>
-</article>
+      )}
+      <div class="work-card__body">
+        <h2 class="work-card__title">{work.title}</h2>
+      </div>
+    </a>
+  </article>
+</li>

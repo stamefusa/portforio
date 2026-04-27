@@ -19,7 +19,7 @@ const totalPages = getTotalPages(works.totalCount);
     </div>
   </section>
   <ul class="works-grid">
-    {works.contents.map((work) => <WorkCard work={work} />)}
+    {works.contents.map((work, index) => <WorkCard work={work} priority={index === 0} />)}
   </ul>
   {totalPages > 1 && (
     <ul class="pagination">
